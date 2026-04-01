@@ -28,6 +28,10 @@ unzip csv_pus.zip
 #   inflating: psam_pusa.csv
 #   inflating: psam_pusb.csv
 #   inflating: ACS2024_PUMS_README.pdf
+awk -F',' 'NR==1{for(i=1;i<=NF;i++) h[$i]=i} {print $h["PWGTP"] "," $h["ADJINC"] "," $h["AGEP"] "," $h["PINCP"] "," $h["OCCP"] "," $h["SOCP"]}' psam_pusa.csv > smallera.csv
+awk -F',' 'NR==1{for(i=1;i<=NF;i++) h[$i]=i} {print $h["PWGTP"] "," $h["ADJINC"] "," $h["AGEP"] "," $h["PINCP"] "," $h["OCCP"] "," $h["SOCP"]}' psam_pusb.csv > smallerb.csv
+{ cat smallera.csv; tail -n +2 smallerb.csv; } > smaller.csv
+rm smaller?.csv
 ```
 
 
@@ -38,12 +42,15 @@ pyenv install 3.14.3
 pyenv virtualenv 3.14.3 show_the_data
 pyenv local show_the_data
 pip install jupyter matplotlib pandas
+pip install csvkit  # but then I used awk etc...
 pip freeze > requirements.txt
 ```
 
 
 ### references
 
+ * https://www.bls.gov/soc/2018/major_groups.htm SOC code groups
+     * edu ones start with "25"
  * https://github.com/ajschumacher/income
  * https://planspace.org/20220702-what_are_people_doing/
  * https://planspace.org/20220703-common_jobs_by_income_range/
