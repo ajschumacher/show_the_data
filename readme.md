@@ -49,6 +49,7 @@ pip freeze > requirements.txt
 
 ### references
 
+ * https://github.com/30DayChartChallenge/Edition2026/blob/main/list_prompts.md
  * https://www.bls.gov/soc/2018/major_groups.htm SOC code groups
      * edu ones start with "25"
  * https://github.com/ajschumacher/income
