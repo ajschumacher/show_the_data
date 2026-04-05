@@ -43,6 +43,7 @@ pyenv virtualenv 3.14.3 show_the_data
 pyenv local show_the_data
 pip install jupyter matplotlib pandas
 pip install csvkit  # but then I used awk etc...
+pip install statsmodels
 pip freeze > requirements.txt
 ```
 
