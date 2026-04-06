@@ -1,7 +1,5 @@
 .python-version
-ACS2024_PUMS_README.pdf
-csv_pus.zip
-psam_pusa.csv
-psam_pusb.csv
 .ipynb_checkpoints/
-smaller.csv
+*.zip
+*.csv
+*.pdf
