@@ -52,6 +52,7 @@ pip install jupyter matplotlib pandas
 pip install csvkit  # but then I used awk etc...
   # ah, I'm using it now!
 pip install statsmodels
+pip install seaborn
 pip freeze > requirements.txt
 ```
 
