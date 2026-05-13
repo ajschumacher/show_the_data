@@ -36,12 +36,19 @@ assert quantiles([1, 2, 3, 4, 5], [1]) == [5]
 assert quantiles([1, 2, 3, 4, 5], [0.5, 1]) == [3, 5]
 
 
+def sort(data, weights=None):
+    if weights is None:
+        return sorted(data), None
+    data, weights = zip(*sorted(zip(data, weights)))
+    return data, weights
+
+
 def plot(data, weights=None,
          bins=4, ypos=0, height=0.6,
          whisker=0.1, show_whiskers=True):
     levels = list(x/bins for x in range(bins + 1))
-    # TODO: sort weights properly?
-    values = quantiles(sorted(data), levels, weights)
+    data, weights = sort(data, weights)
+    values = quantiles(data, levels, weights)
     plt.vlines(values,
                ymin=ypos - height/2, ymax=ypos + height/2,
                color='black')
@@ -62,7 +69,6 @@ def multi(data, categories, labels=None, weights=None,
         labels = sorted(list(set(categories)))
     for index, label in enumerate(labels[::-1]):
         subdata = [d for d, c in zip(data, categories) if c == label]
-        # TODO: sort weights properly?
         subweights = ([w for w, c in zip(weights, categories) if c == label]
                       if weights is not None else None)
         plot(subdata, weights=subweights, bins=bins, ypos=index, height=height,
