@@ -38,7 +38,7 @@ assert quantiles([1, 2, 3, 4, 5], [0.5, 1]) == [3, 5]
 
 def plot(data, weights=None,
          bins=4, ypos=0, height=0.6,
-         whisker=0.1, show_whiskers=False):
+         whisker=0.1, show_whiskers=True):
     levels = list(x/bins for x in range(bins + 1))
     # TODO: sort weights properly?
     values = quantiles(sorted(data), levels, weights)
@@ -57,7 +57,7 @@ def plot(data, weights=None,
 
 def multi(data, categories, labels=None, weights=None,
           bins=4, height=0.6,
-          whisker=0.1, show_whiskers=False):
+          whisker=0.1, show_whiskers=True):
     if labels is None:
         labels = sorted(list(set(categories)))
     for index, label in enumerate(labels[::-1]):
